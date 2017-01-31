@@ -15,12 +15,8 @@ import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
-import org.LostTheGame.PlayerTracker.Banlist.BanHammerBanlist;
 import org.LostTheGame.PlayerTracker.Banlist.Banlist;
-import org.LostTheGame.PlayerTracker.Banlist.CommandBookBanlist;
-import org.LostTheGame.PlayerTracker.Banlist.EssentialsBanlist;
 import org.LostTheGame.PlayerTracker.Banlist.FigAdminBanlist;
-import org.LostTheGame.PlayerTracker.Banlist.UltraBansBanlist;
 import org.LostTheGame.PlayerTracker.Banlist.VanillaBanlist;
 import org.LostTheGame.PlayerTracker.Commands.TrackExecutor;
 import org.LostTheGame.PlayerTracker.Database.Database;
@@ -216,37 +212,6 @@ public class PlayerTracker extends JavaPlugin {
         	//banPlugin = this.getServer().getPluginManager().getPlugin("FigAdmin");
         	this.banlistEnabled = true;
         	this.banlist = new FigAdminBanlist( this );
-        }
-        else if ( this.getServer().getPluginManager().isPluginEnabled("Ultrabans") ) {
-        	log.info("[P-Tracker] Ultrabans detected, attempting to use as banlist."); 
-        	this.banlistEnabled = true;
-        	this.banlist = new UltraBansBanlist( this, "Ultrabans" );
-        }
-        else if ( this.getServer().getPluginManager().isPluginEnabled("UltraBanLite") ) {
-        	log.info("[P-Tracker] UltraBans-Lite detected, attempting to use as banlist."); 
-        	this.banlistEnabled = true;
-        	this.banlist = new UltraBansBanlist( this, "UltraBanLite" );
-        }
-        else if ( this.getServer().getPluginManager().isPluginEnabled("BanHammer") ) {
-        	log.info("[P-Tracker] BanHammer detected, attempting to use as banlist."); 
-        	this.banlistEnabled = true;
-        	this.banlist = new BanHammerBanlist( this );
-        }
-    	// Essentials/Commandbook have lowest priority, because they are not ban-specific plugins
-        else if ( this.getServer().getPluginManager().isPluginEnabled("Essentials") ) {
-        	log.info("[P-Tracker] Essentials detected, attempting to use as banlist."); 
-        	this.banlistEnabled = true;
-        	this.banlist = new EssentialsBanlist( this );
-        }
-        else if ( this.getServer().getPluginManager().isPluginEnabled("CommandBook") ) {
-        	try {
-	        	this.banlist = new CommandBookBanlist( this );
-	    		this.banlistEnabled = true;
-    			log.info("[P-Tracker] CommandBook detected, attempting to use as banlist."); 
-        	} catch (Exception e) {
-            	log.info("[P-Tracker] CommandBook detected, but the bans component is disabled!."); 
-        	}
-
         }
         
 

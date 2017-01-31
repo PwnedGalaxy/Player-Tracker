@@ -33,10 +33,9 @@ public class LoginListenerTracker implements Listener {
 		}
 		
 		if ( plugin.msgonJoin ) {
-	        Player[] players = plugin.getServer().getOnlinePlayers();
 	        ArrayList<Player> notifyUs = new ArrayList<Player>();
 	    
-		    for (Player user : players) {
+		    for (Player user : plugin.getServer().getOnlinePlayers()) {
 		    	if (user.hasPermission("playertracker.onJoin")) {
 		    		notifyUs.add(user);
 		        }
